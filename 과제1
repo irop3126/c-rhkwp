@@ -1,0 +1,53 @@
+3명의 2과목 성적을 하드디스크에서 저장하고, 이를 읽어서 개인별, 과목별 평균계산하고 다시 저장하는 프로그램
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Student {
+    char name[20];
+    int kor;
+    int eng;
+};
+
+int main() {
+    struct Student students[3] = {
+        {"Shim", 90, 85},
+        {"Kim", 78, 92},
+        {"Park", 88, 79}
+    };
+
+    FILE *file = fopen("students.txt", "w");
+    fprintf(file, "Name,Korean,English\n");
+    for (int i = 0; i < 3; i++) {
+        fprintf(file, "%s,%d,%d\n", students[i].name, students[i].kor, students[i].eng);
+    }
+    fclose(file);
+    file = fopen("students.txt", "r");
+    char buffer[100];
+    fgets(buffer, sizeof(buffer), file);
+    printf("Name\tKorean\tEnglish\n");
+    struct Student student;
+    while (fscanf(file, "%19[^,],%d,%d\n", student.name, &student.kor, &student.eng) == 3) {
+        printf("%s\t%d\t%d\n", student.name, student.kor, student.eng);
+    }
+    float avg_kor = 0.0, avg_eng = 0.0;
+    int num_students = 0;
+    rewind(file);
+    while (fscanf(file, "%19[^,],%d,%d\n", student.name, &student.kor, &student.eng) == 3) {
+        avg_kor += student.kor;
+        avg_eng += student.eng;
+        num_students++;
+    }
+    avg_kor /= num_students;
+    avg_eng /= num_students;
+    fprintf(file, "Averages,%0.2f,%0.2f\n", avg_kor, avg_eng);
+    fclose(file);
+    return 0;
+}
+
+소감
+
+20230945 김범석
+
+프로그램을 짜면서 여러번 부딪혀 가면서 수정하기를 반복해가면서 완성한 프로그램이라 성공했을때의 쾌감을 많이 느꼈습니다.
