@@ -1,6 +1,6 @@
 
 1.math.lib 만들기 & 22와 33더하기 구현
-![diq](https://github.com/irop3126/c-rhkwp/assets/127822814/e4e0f541-a134-4245-97ff-aecb964b8375)
+![image](https://github.com/irop3126/c-rhkwp/assets/127822814/c501a237-8daf-4a00-920d-73cb94d1fc08)
 
 
 2.코드
