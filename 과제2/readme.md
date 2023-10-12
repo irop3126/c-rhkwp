@@ -14,7 +14,7 @@ printf("%d", add(22,33));
 }
 ```
 
-math.c (math.lib)
+mymath.c (mymath.lib)
 ```c
 #include<stdio.h>
 int add(int a, int b)
